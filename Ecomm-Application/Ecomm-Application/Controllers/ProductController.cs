@@ -1,4 +1,5 @@
-﻿using Ecomm_Application.Models;
+﻿using Ecomm_Application.Helpers;
+using Ecomm_Application.Models;
 using Ecomm_Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +38,9 @@ namespace Ecomm_Application.Controllers
                 return NotFound();
         }
         [HttpPost("save")]
-        public ActionResult<Product> SaveProduct(Product product)
+        public ActionResult<ProductDTO> SaveProduct(ProductDTO product)
         {
-            var product1 =new Product();
+            var product1 =new ProductDTO();
             if (ModelState.IsValid)
             {
                 product1 = productService.SaveProduct(product);
