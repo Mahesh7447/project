@@ -1,6 +1,7 @@
 ﻿using Ecomm_Application.Helpers;
 using Ecomm_Application.Models;
 using Ecomm_Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -18,6 +19,7 @@ namespace Ecomm_Application.Controllers
             this.productService = productService;
         }
         [HttpGet("allproducts")]
+        [Authorize(Roles = "User")]
         public ActionResult<IEnumerable<Product>> GetProducts()
         {
             return Ok(productService.GetProducts());
@@ -37,6 +39,7 @@ namespace Ecomm_Application.Controllers
             else
                 return NotFound();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost("save")]
         public ActionResult<ProductDTO> SaveProduct(ProductDTO product)
         {
@@ -49,6 +52,7 @@ namespace Ecomm_Application.Controllers
             else
                 return BadRequest();
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete/{id}")]
         public ActionResult<bool> DeleteProduct(int id)
         {

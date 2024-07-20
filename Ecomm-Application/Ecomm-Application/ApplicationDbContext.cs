@@ -10,5 +10,8 @@ namespace Ecomm_Application
 
         }
         public DbSet<Product> products { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Role> roles { get; set; }
+        public DbSet<UserRole> userRoles { get; set; }  
     }
 }
